@@ -164,7 +164,7 @@ function prepare_xbb_env()
     exit 1
   fi
 
-  if [ -f "/.dockerenv" ]
+  if [ -f "/.dockerenv" -o -f "/run/.containerenv" ]
   then
     WORK_FOLDER_PATH="${CONTAINER_WORK_FOLDER_PATH}"
     DOWNLOAD_FOLDER_PATH="${CONTAINER_CACHE_FOLDER_PATH}"
@@ -175,7 +175,7 @@ function prepare_xbb_env()
 
   # Develop builds use the host folder.
   BUILD_FOLDER_PATH="${WORK_FOLDER_PATH}/${TARGET_FOLDER_NAME}/build"
-  if [ -f "/.dockerenv" ]
+  if [ -f "/.dockerenv" -o -f "/run/.containerenv" ]
   then 
     if [ "${IS_DEVELOP}" != "y" ]
     then
